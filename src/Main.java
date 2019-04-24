@@ -28,7 +28,7 @@ import java.util.Scanner;
         }
 
 
-        // add salesPeople id to know which one added a salesLead
+        // add salesPeople id to know which one added a salesLead sds
         public SalesLead addSL(String _empID) {
             SalesLead sl = new SalesLead(cCount++);
             Scanner scnr = new Scanner(System.in);
