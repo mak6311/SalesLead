@@ -1,6 +1,5 @@
 package com.company;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,26 +7,26 @@ import java.util.Scanner;
 public class SalesLead {
     protected int salesLeadID;
     protected String sl_firstName, sl_lastName, sl_phoneNumber, sl_Email, empID;
+    protected Boolean salesLeadActive;
     protected String salesLeadDate;
     int cCount;
 
     private int salesPersonID;
 
-    public ArrayList<Main.SalesLead> slList = new ArrayList<Main.SalesLead>();
-
 
     // Constructors
-    public SalesLead(int _id) {
+    public SalesLead(int _id, int salesPersonID) {
         this.salesLeadID = _id;
+        this.salesPersonID = salesPersonID;
     }
 
     public SalesLead() {
     }
 
 
-    // add salesPeople id to know which one added a salesLead sds
-    public Main.SalesLead addSL(String _empID) {
-        Main.SalesLead sl = new Main.SalesLead(cCount++);
+    // add salesPeople id to know which one added a salesLead
+    public SalesLead addSL(String _empID) {
+        SalesLead sl = new SalesLead(cCount++, salesPersonID);
         Scanner scnr = new Scanner(System.in);
         // fix this
         System.out.println("Employee ID: " + _empID);
@@ -43,7 +42,6 @@ public class SalesLead {
         System.out.println("Please enter SL email: ");
         sl.setSl_Email(scnr.nextLine());
         sl.setSalesLeadID(cCount);
-
 
         return sl;
     }
@@ -106,8 +104,8 @@ public class SalesLead {
         return empID;
     }
 
-    public static void printSalesLead(ArrayList<Main.SalesLead> slList) {
-        for (Main.SalesLead sales_lead : slList) {
+    public static void printSalesLead(ArrayList<SalesLead> slList) {
+        for (SalesLead sales_lead : slList) {
             System.out.printf("%-5s | %-12s | %-15s | %-15s | %-14s | %-10s\n", sales_lead.getSalesLeadID(), sales_lead.getSL_empID(), sales_lead.getSl_firstName() + " " + sales_lead.getSl_lastName(), sales_lead.getSl_phoneNumber(), sales_lead.getSl_Email(), sales_lead.getSl_Date());
             // System.out.println(sales_lead.getSalesLeadID(), sales_lead.getSl_firstName(), sales_lead.getSl_lastName());
 
@@ -116,12 +114,11 @@ public class SalesLead {
 
             // use this to count sales lead -
             System.out.println("Number of Sales Lead: " + slList.size());
-
         }
     }
 
-    public static void printSalesLeadById(ArrayList<Main.SalesLead> slList, int salesLeadID) {
-        for (Main.SalesLead sl : slList) {
+    public static void printSalesLeadById(ArrayList<SalesLead> slList, int salesLeadID) {
+        for (SalesLead sl : slList) {
             if (sl.salesLeadID == salesLeadID) {
                 System.out.printf("%-10s | %-12s | %-10s\n", sl.getSalesLeadID(), sl.getSl_Email(), sl.getSl_phoneNumber());
             }
@@ -133,7 +130,6 @@ public class SalesLead {
         Scanner scnr = new Scanner(System.in);
         String input = scnr.nextLine();
         return input;
-
     }
 
     public static String testAlpha(String alphaCharacter) {
@@ -149,9 +145,7 @@ public class SalesLead {
         } catch (InputMismatchException notAnAlpha) {
             System.out.println("Invalid input. Please try again.");
             return getInput();
-
         }
-
     }
 
 
@@ -170,7 +164,6 @@ public class SalesLead {
         } catch (InputMismatchException notAnEmail) {
             System.out.println("Invalid input. Please try again.");
             return getInput();
-
         }
     }
 
@@ -189,8 +182,6 @@ public class SalesLead {
         } catch (InputMismatchException notAnEmail) {
             System.out.println("Invalid input. Please try again.");
             return getInput();
-
         }
     }
-
 }
