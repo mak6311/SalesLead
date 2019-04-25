@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-//SalesLead - add information (name, phone number, email, salespeople id)
+//SalesLead - add information ( name, phone number, email, salespeople id )
         SalesLead s1 = new SalesLead();
         s1.setSalesLeadID(0);
 
